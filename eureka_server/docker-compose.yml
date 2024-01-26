@@ -1,0 +1,30 @@
+version: '3'
+services:
+  eureka-server1:
+    container_name: eureka-server
+    image: springapp
+    build:
+      dockerfile: DockerFile
+    hostname: eureka-peer1
+    ports:
+      - 8761:8761
+    environment:
+      - SPRING_PROFILES_ACTIVE=peer1
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart: always
+
+  eureka-server2:
+    image: springapp
+    build:
+      dockerfile: DockerFile
+    hostname: eureka-peer2
+    ports:
+      - 8762:8762
+    environment:
+      - SPRING_PROFILES_ACTIVE=peer2
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart: always
