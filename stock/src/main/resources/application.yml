@@ -1,0 +1,33 @@
+#eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+#spring.application.name=stock-service
+#
+#---
+#spring.config.activate.on-profile="service1"
+#server.port=8900
+
+spring:
+  application:
+    name: stock-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "stock1"
+server:
+  port: 8900
+static-configs:
+  dummyStockQuantity: 100
+---
+spring:
+  config:
+    activate:
+      on-profile: "stock2"
+server:
+  port: 8901
+static-configs:
+  dummyStockQuantity: 200
